@@ -1,7 +1,6 @@
-import Fotter from "@/components/Fotter";
-import Header from "@/components/Header";
 import { ModeToggle } from "@/components/theme/ModeToggle";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -13,13 +12,31 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <>
-        <div>
-          <h1 className="text-3xl font-bold underline">Hello world!
-          
-          </h1>
-          <Header/>
-          <Fotter/>
-          <ModeToggle/>
+        <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
+          <div>
+            <ModeToggle />
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-10 flex flex-col items-center max-w-md w-full">
+            <Image
+              src="/logo-stackly.png"
+              alt="E-Commerce Logo"
+              className="  mb-4"
+              height={200}
+              width={200}
+            />
+            <h1 className="text-4xl font-extrabold text-purple-700 dark:text-purple-400 mb-2">
+              Welcome to ShopEase
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+              Sign in to access exclusive deals and manage your account.
+            </p>
+            <button
+              className="w-full bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 mb-2"
+              onClick={() => (window.location.href = "/auth")}
+            >
+              Go to Login
+            </button>
+          </div>
         </div>
       </>
     </>
