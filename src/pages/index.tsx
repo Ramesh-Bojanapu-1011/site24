@@ -1,3 +1,5 @@
+import Fotter from "@/components/Fotter";
+import Header from "@/components/Header";
 import { ModeToggle } from "@/components/theme/ModeToggle";
 import Head from "next/head";
 
@@ -15,6 +17,8 @@ export default function Home() {
           <h1 className="text-3xl font-bold underline">Hello world!
           
           </h1>
+          <Header/>
+          <Fotter/>
           <ModeToggle/>
         </div>
       </>
