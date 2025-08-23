@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Link from 'next/link';
 
 // Dummy data for the e-commerce website
 const featuredProducts = [
@@ -164,9 +165,9 @@ export default function Home1() {
                   <button className="bg-white text-indigo-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-50 transition-colors duration-300 shadow-lg">
                     Shop Now
                   </button>
-                  <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-indigo-900 transition-all duration-300">
+                  <Link href="/about" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-indigo-900 transition-all duration-300 text-center">
                     Learn More
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -252,12 +253,9 @@ export default function Home1() {
                 ))}
               </div>
               <div className="text-center mt-12">
-                <button 
-                  onClick={() => setShowAllProducts(!showAllProducts)}
-                  className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
-                >
-                  {showAllProducts ? 'Show Less' : 'View All Products'}
-                </button>
+                <Link href="/about" className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors inline-block">
+                  View All Products
+                </Link>
               </div>
             </div>
           </section>

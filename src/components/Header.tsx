@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { ModeToggle } from "./theme/ModeToggle";
 import Image from "next/image";
+import Link from "next/link";
 
 const services = [
-  "Product Listing",
-  "Order Management",
-  "Payment Gateway",
-  "Customer Support",
-  "Shipping & Delivery",
-  "Analytics & Reports",
+  { name: "Product Listing", href: "/services#product-listing", icon: "📦" },
+  { name: "Order Management", href: "/services#order-management", icon: "🛒" },
+  { name: "Payment Gateway", href: "/services#payment-gateway", icon: "💳" },
+  { name: "Customer Support", href: "/services#customer-support", icon: "🎧" },
+  { name: "Shipping & Delivery", href: "/services#shipping-delivery", icon: "🚚" },
+  { name: "Analytics & Reports", href: "/services#analytics-reports", icon: "📊" },
 ];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [homeDropdown, setHomeDropdown] = useState(false);
   const [servicesDropdown, setServicesDropdown] = useState(false);
-  // const [darkMode, setDarkMode] = useState(false);
 
   return (
     <header className={``}>
@@ -24,13 +24,16 @@ export default function Header() {
           <div className="flex justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
-              <Image
-                src="/logo-stackly.png"
-                alt="E-Commerce Logo"
-                className="w-8 h-8"
-                height={32}
-                width={32}
-              />
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/logo-stackly.png"
+                  alt="E-Commerce Logo"
+                  className="w-8 h-8"
+                  height={32}
+                  width={32}
+                />
+                <span className="ml-2 text-xl font-bold text-indigo-600 dark:text-indigo-400">ShopHub</span>
+              </Link>
             </div>
             {/* Desktop Menu */}
             <div className="hidden md:flex md:items-center space-x-4">
@@ -45,27 +48,27 @@ export default function Header() {
                 </button>
                 {homeDropdown && (
                   <div className="absolute left-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg z-30">
-                    <a
-                      href="#"
+                    <Link
+                      href="/home1"
                       className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
                       Home1
-                    </a>
-                    <a
-                      href="#"
+                    </Link>
+                    <Link
+                      href="/"
                       className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
                       Home2
-                    </a>
+                    </Link>
                   </div>
                 )}
               </div>
-              <a
-                href="#about"
+              <Link
+                href="/about"
                 className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 About Us
-              </a>
+              </Link>
               {/* Services Dropdown */}
               <div
                 className="relative"
@@ -77,30 +80,36 @@ export default function Header() {
                 </button>
                 {servicesDropdown && (
                   <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-30">
+                    <Link
+                      href="/services"
+                      className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 border-b border-gray-200 dark:border-gray-700"
+                    >
+                      All Services
+                    </Link>
                     {services.map((service) => (
-                      <a
-                        key={service}
-                        href="#"
+                      <Link
+                        key={service.name}
+                        href={service.href}
                         className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
-                        {service}
-                      </a>
+                        {service.icon} {service.name}
+                      </Link>
                     ))}
                   </div>
                 )}
               </div>
-              <a
-                href="#blog"
+              <Link
+                href="/blog"
                 className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 Blog
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                href="/contact"
                 className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 Contact Us
-              </a>
+              </Link>
               {/* Dark Mode Toggle */}
               <ModeToggle />
             </div>
@@ -152,27 +161,27 @@ export default function Header() {
               </button>
               {homeDropdown && (
                 <div className="pl-4">
-                  <a
-                    href="#"
+                  <Link
+                    href="/home1"
                     className="block px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     Home1
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href="/"
                     className="block px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     Home2
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
-            <a
-              href="#about"
+            <Link
+              href="/about"
               className="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               About Us
-            </a>
+            </Link>
             {/* Services Dropdown */}
             <div>
               <button
@@ -183,30 +192,36 @@ export default function Header() {
               </button>
               {servicesDropdown && (
                 <div className="pl-4">
+                  <Link
+                    href="/services"
+                    className="block px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 border-b border-gray-200 dark:border-gray-700"
+                  >
+                    All Services
+                  </Link>
                   {services.map((service) => (
-                    <a
-                      key={service}
-                      href="#"
+                    <Link
+                      key={service.name}
+                      href={service.href}
                       className="block px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
-                      {service}
-                    </a>
+                      {service.icon} {service.name}
+                    </Link>
                   ))}
                 </div>
               )}
             </div>
-            <a
-              href="#blog"
+            <Link
+              href="/blog"
               className="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               Blog
-            </a>
-            <a
-              href="#contact"
+            </Link>
+            <Link
+              href="/contact"
               className="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               Contact Us
-            </a>
+            </Link>
           </div>
         )}
       </nav>

@@ -1,6 +1,7 @@
 import React from "react";
+import Link from "next/link";
 
-export default function Fotter() {
+export default function Footer() {
   return (
     <footer className="bg-black text-white pt-10 pb-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,7 +10,9 @@ export default function Fotter() {
           <div className="md:w-1/3">
             <div className="flex items-center mb-4">
               {/* Logo Placeholder */}
-              <span className="text-3xl font-bold text-indigo-400">E-Shop</span>
+              <Link href="/" className="text-3xl font-bold text-indigo-400 hover:text-indigo-300 transition-colors">
+                ShopHub
+              </Link>
             </div>
             <h2 className="text-xl font-bold text-indigo-400 mb-2">E-Commerce Company</h2>
             <p className="mb-4 text-white/80">
@@ -46,26 +49,42 @@ export default function Fotter() {
           {/* Quick Links */}
           <div className="md:w-1/6">
             <h3 className="text-lg font-bold text-indigo-400 mb-3">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-indigo-400">Home 1</a></li>
-              <li><a href="#about" className="hover:text-indigo-400">About Us</a></li>
-              <li><a href="#" className="hover:text-indigo-400">Services</a></li>
-              <li><a href="#blog" className="hover:text-indigo-400">Blog</a></li>
-              <li><a href="#contact" className="hover:text-indigo-400">Contact</a></li>
-            </ul>
-          </div>
-          {/* Our Services */}
-          <div className="md:w-1/4">
-            <h3 className="text-lg font-bold text-indigo-400 mb-3">Our Services</h3>
-            <ul className="space-y-2">
-              <li>Product Listing</li>
-              <li>Order Management</li>
-              <li>Payment Gateway</li>
-              <li>Customer Support</li>
-              <li>Shipping & Delivery</li>
-              <li>Analytics & Reports</li>
-            </ul>
-          </div>
+                    <ul className="space-y-2">
+          <li><Link href="/home1" className="hover:text-indigo-400 transition-colors">Home 1</Link></li>
+          <li><Link href="/" className="hover:text-indigo-400 transition-colors">Home 2</Link></li>
+          <li><Link href="/about" className="hover:text-indigo-400 transition-colors">About Us</Link></li>
+          <li><Link href="/contact" className="hover:text-indigo-400 transition-colors">Contact Us</Link></li>
+          <li><Link href="/services" className="hover:text-indigo-400 transition-colors">All Services</Link></li>
+          <li><Link href="/services#product-listing" className="hover:text-indigo-400 transition-colors">📦 Product Listing</Link></li>
+          <li><Link href="/services#order-management" className="hover:text-indigo-400 transition-colors">🛒 Order Management</Link></li>
+          <li><Link href="/services#payment-gateway" className="hover:text-indigo-400 transition-colors">💳 Payment Gateway</Link></li>
+          <li><Link href="/services#customer-support" className="hover:text-indigo-400 transition-colors">🎧 Customer Support</Link></li>
+          <li><Link href="/services#shipping-delivery" className="hover:text-indigo-400 transition-colors">🚚 Shipping & Delivery</Link></li>
+                    <li><Link href="/services#analytics-reports" className="hover:text-indigo-400 transition-colors">📊 Analytics & Reports</Link></li>
+        </ul>
+      </div>
+      {/* Blog & Resources */}
+      <div className="md:w-1/4">
+        <h3 className="text-lg font-bold text-indigo-400 mb-3">Blog & Resources</h3>
+        <ul className="space-y-2">
+          <li><Link href="/blog" className="hover:text-indigo-400 transition-colors">All Articles</Link></li>
+          <li><Link href="/blog/future-ecommerce-ai-powered-shopping" className="hover:text-indigo-400 transition-colors">AI in E-commerce</Link></li>
+          <li><Link href="/blog/essential-strategies-boosting-conversion-rate" className="hover:text-indigo-400 transition-colors">Conversion Strategies</Link></li>
+          <li><Link href="/blog/building-customer-trust-ecommerce-success" className="hover:text-indigo-400 transition-colors">Building Trust</Link></li>
+        </ul>
+      </div>
+      {/* Our Services */}
+      <div className="md:w-1/4">
+        <h3 className="text-lg font-bold text-indigo-400 mb-3">Our Services</h3>
+        <ul className="space-y-2">
+          <li>Product Listing</li>
+          <li>Order Management</li>
+          <li>Payment Gateway</li>
+          <li>Customer Support</li>
+          <li>Shipping & Delivery</li>
+          <li>Analytics & Reports</li>
+        </ul>
+      </div>
           {/* Get In Touch */}
           <div className="md:w-1/4">
             <h3 className="text-lg font-bold text-indigo-400 mb-3">Get In Touch</h3>
@@ -76,7 +95,7 @@ export default function Fotter() {
               </li>
               <li className="flex items-center">
                 <span className="mr-2">✉️</span>
-                <span>support@eshop.com</span>
+                <span>support@shophub.com</span>
               </li>
               <li className="flex items-center">
                 <span className="mr-2">📍</span>
@@ -87,18 +106,18 @@ export default function Fotter() {
                 <span>Mon - Fri: 9am - 6pm</span>
               </li>
             </ul>
-            <button className="mt-4 bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded transition">
+            <Link href="/about" className="mt-4 inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded transition">
               Start Your E-Shop Journey
-            </button>
+            </Link>
           </div>
         </div>
         {/* Bottom Bar */}
         <div className="border-t border-white/10 mt-10 pt-4 flex flex-col md:flex-row md:justify-between items-center text-sm text-white/60">
-          <div>© 2025 E-Commerce Company. All rights reserved.</div>
+          <div>© 2025 ShopHub E-Commerce Company. All rights reserved.</div>
           <div className="flex space-x-6 mt-2 md:mt-0">
-            <a href="#" className="hover:text-indigo-400">Privacy Policy</a>
-            <a href="#" className="hover:text-indigo-400">Terms of Service</a>
-            <a href="#" className="hover:text-indigo-400">Cookie Policy</a>
+            <a href="#" className="hover:text-indigo-400 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-indigo-400 transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-indigo-400 transition-colors">Cookie Policy</a>
           </div>
         </div>
       </div>
