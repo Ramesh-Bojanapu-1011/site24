@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Link from 'next/link';
 
-// Dummy data for the e-commerce website
+//  data for the e-commerce website
 const featuredProducts = [
   {
     id: 1,
@@ -80,6 +80,42 @@ const additionalProducts = [
     image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop",
     rating: 4.8,
     reviews: 2156
+  },
+  {
+    id: 9,
+    name: "Bluetooth Speaker",
+    price: "$129.99",
+    originalPrice: "$179.99",
+    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop",
+    rating: 4.5,
+    reviews: 1567
+  },
+  {
+    id: 10,
+    name: "Smartphone",
+    price: "$899.99",
+    originalPrice: "$1,099.99",
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop",
+    rating: 4.9,
+    reviews: 3245
+  },
+  {
+    id: 11,
+    name: "Tablet",
+    price: "$499.99",
+    originalPrice: "$649.99",
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=400&fit=crop",
+    rating: 4.6,
+    reviews: 1892
+  },
+  {
+    id: 12,
+    name: "Smart Watch",
+    price: "$299.99",
+    originalPrice: "$399.99",
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
+    rating: 4.7,
+    reviews: 2341
   }
 ];
 
@@ -97,19 +133,37 @@ const testimonials = [
     name: "Sarah Johnson",
     role: "Verified Buyer",
     content: "Amazing quality products and fast delivery. This is now my go-to online store!",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop"
+    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop",
+    rating: 5,
+    purchase: "Premium Wireless Headphones",
+    date: "2 weeks ago"
   },
   {
     name: "Michael Chen",
     role: "Premium Member",
     content: "The customer service is exceptional and the product range is incredible. Highly recommended!",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop"
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop",
+    rating: 5,
+    purchase: "Smart Fitness Watch",
+    date: "1 month ago"
   },
   {
     name: "Emily Rodriguez",
     role: "Loyal Customer",
     content: "I've been shopping here for years and never been disappointed. Great prices and quality!",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
+    rating: 5,
+    purchase: "Ultra HD Camera",
+    date: "3 weeks ago"
+  },
+  {
+    name: "David Kim",
+    role: "Verified Buyer",
+    content: "Fast shipping and excellent product quality. Will definitely shop here again!",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+    rating: 5,
+    purchase: "Portable Speaker",
+    date: "1 week ago"
   }
 ];
 
@@ -135,6 +189,10 @@ export default function Home1() {
   };
 
   const allProducts = [...featuredProducts, ...additionalProducts];
+
+  const handleViewAllProducts = () => {
+    setShowAllProducts(!showAllProducts);
+  };
 
   return (
     <>
@@ -253,9 +311,12 @@ export default function Home1() {
                 ))}
               </div>
               <div className="text-center mt-12">
-                <Link href="/about" className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors inline-block">
-                  View All Products
-                </Link>
+                <button 
+                  onClick={handleViewAllProducts}
+                  className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors inline-block"
+                >
+                  {showAllProducts ? 'Show Less' : 'View All Products'}
+                </button>
               </div>
             </div>
           </section>
@@ -286,7 +347,7 @@ export default function Home1() {
             </div>
           </section>
 
-          {/* Testimonials Section */}
+          {/* Testimonials Section - Flip Cards */}
           <section className="py-20 bg-gray-50 dark:bg-gray-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
@@ -297,29 +358,46 @@ export default function Home1() {
                   Don't just take our word for it - hear from our satisfied customers
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {testimonials.map((testimonial, index) => (
-                  <div key={index} className="bg-white dark:bg-gray-700 rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-600">
-                    <div className="flex items-center mb-6">
-                      <img 
-                        src={testimonial.avatar} 
-                        alt={testimonial.name}
-                        className="w-16 h-16 rounded-full object-cover mr-4"
-                      />
-                      <div>
-                        <h4 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h4>
-                        <p className="text-sm text-indigo-600 dark:text-indigo-400">{testimonial.role}</p>
+                  <div key={index} className="group perspective-1000">
+                    <div className="relative w-full h-80 transition-all duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                      {/* Front of card */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-600 flex flex-col items-center justify-center text-center">
+                        <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-4 border-indigo-100 dark:border-indigo-900">
+                          <img 
+                            src={testimonial.avatar} 
+                            alt={testimonial.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white text-lg mb-2">{testimonial.name}</h4>
+                        <p className="text-sm text-indigo-600 dark:text-indigo-400 mb-3">{testimonial.role}</p>
+                        <div className="flex text-yellow-400 mb-3">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                          ))}
+                        </div>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Click to see more</p>
                       </div>
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                      "{testimonial.content}"
-                    </p>
-                    <div className="flex text-yellow-400 mt-4">
-                      {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
+                      
+                      {/* Back of card */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden bg-indigo-600 dark:bg-indigo-700 rounded-xl p-6 shadow-lg rotate-y-180 flex flex-col items-center justify-center text-center text-white">
+                        <div className="mb-4">
+                          <svg className="w-12 h-12 text-indigo-200 mx-auto mb-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <p className="text-sm mb-4 leading-relaxed">"{testimonial.content}"</p>
+                        <div className="text-xs text-indigo-200 mb-2">
+                          <strong>Purchased:</strong> {testimonial.purchase}
+                        </div>
+                        <div className="text-xs text-indigo-200">
+                          {testimonial.date}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}

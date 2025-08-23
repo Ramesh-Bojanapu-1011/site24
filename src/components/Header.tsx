@@ -4,12 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const services = [
-  { name: "Product Listing", href: "/services#product-listing", icon: "📦" },
-  { name: "Order Management", href: "/services#order-management", icon: "🛒" },
-  { name: "Payment Gateway", href: "/services#payment-gateway", icon: "💳" },
-  { name: "Customer Support", href: "/services#customer-support", icon: "🎧" },
-  { name: "Shipping & Delivery", href: "/services#shipping-delivery", icon: "🚚" },
-  { name: "Analytics & Reports", href: "/services#analytics-reports", icon: "📊" },
+  { name: "Product Listing", href: "/services/product-listing" },
+  { name: "Order Management", href: "/services/order-management" },
+  { name: "Payment Gateway", href: "/services/payment-gateway" },
+  { name: "Customer Support", href: "/services/customer-support" },
+  { name: "Shipping & Delivery", href: "/services/shipping-delivery" },
+  { name: "Analytics & Reports", href: "/services/analytics-reports" },
 ];
 
 export default function Header() {
@@ -24,7 +24,7 @@ export default function Header() {
           <div className="flex justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="flex items-center">
+              <Link href="/home1" className="flex items-center">
                 <Image
                   src="/logo-stackly.png"
                   alt="E-Commerce Logo"
@@ -32,7 +32,7 @@ export default function Header() {
                   height={32}
                   width={32}
                 />
-                <span className="ml-2 text-xl font-bold text-indigo-600 dark:text-indigo-400">ShopHub</span>
+                
               </Link>
             </div>
             {/* Desktop Menu */}
