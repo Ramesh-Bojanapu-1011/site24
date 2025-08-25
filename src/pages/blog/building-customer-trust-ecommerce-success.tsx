@@ -17,8 +17,18 @@ export default function BlogPost() {
         
         <div className="pt-16">
           {/* Article Header */}
-          <section className="bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-700 text-white py-20">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="relative text-white py-20 overflow-hidden">
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url('/images/image20.jpg')`
+              }}
+            />
+            {/* Black Overlay */}
+            <div className="absolute inset-0 bg-black/60" />
+            {/* Content */}
+            <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center">
                 <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-6">
                   <span className="mr-2">😊</span>
@@ -27,12 +37,12 @@ export default function BlogPost() {
                 <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
                   Building Customer Trust: The Foundation of E-commerce Success
                 </h1>
-                <div className="flex items-center justify-center space-x-6 text-indigo-100">
+                <div className="flex items-center justify-center space-x-6 text-gray-100">
                   <div className="flex items-center">
                     <img 
-                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop" 
+                      src="/images/image17.jpg" 
                       alt="Emily Rodriguez"
-                      className="w-10 h-10 rounded-full mr-3"
+                      className="w-10 h-10 rounded-full mr-3 object-cover"
                     />
                     <span>Emily Rodriguez</span>
                   </div>
@@ -368,9 +378,9 @@ export default function BlogPost() {
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 mb-12">
                   <div className="flex items-start space-x-6">
                     <img 
-                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop" 
+                      src="/images/image17.jpg" 
                       alt="Emily Rodriguez"
-                      className="w-20 h-20 rounded-full"
+                      className="w-20 h-20 rounded-full object-cover"
                     />
                     <div>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">

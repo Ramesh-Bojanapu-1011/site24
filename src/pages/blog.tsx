@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import VideoBackground from '../components/VideoBackground';
 import Link from 'next/link';
 
 // Dummy data for the blog page
@@ -14,7 +15,7 @@ const featuredPosts = [
     date: "March 15, 2025",
     readTime: "8 min read",
     category: "Technology",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+    image: "/images/image18.jpg",
     slug: "future-ecommerce-ai-powered-shopping"
   },
   {
@@ -25,7 +26,7 @@ const featuredPosts = [
     date: "March 12, 2025",
     readTime: "12 min read",
     category: "Marketing",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+    image: "/images/image19.jpg",
     slug: "essential-strategies-boosting-conversion-rate"
   },
   {
@@ -36,81 +37,14 @@ const featuredPosts = [
     date: "March 10, 2025",
     readTime: "6 min read",
     category: "Customer Experience",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+    image: "/images/image20.jpg",
     slug: "building-customer-trust-ecommerce-success"
-  }
-];
-
-const categories = [
-  { name: "Technology", count: 15, icon: "🚀" },
-  { name: "Marketing", count: 23, icon: "📈" },
-  { name: "Customer Experience", count: 18, icon: "😊" },
-  { name: "Business Strategy", count: 12, icon: "💼" },
-  { name: "Analytics", count: 9, icon: "📊" },
-  { name: "Case Studies", count: 7, icon: "📋" }
-];
-
-const recentPosts = [
-  {
-    title: "Mobile-First Design: Why It's Crucial for E-commerce",
-    date: "March 8, 2025",
-    readTime: "5 min read",
-    slug: "mobile-first-design-crucial-ecommerce"
-  },
-  {
-    title: "The Psychology of Pricing: How to Price Your Products Right",
-    date: "March 5, 2025",
-    readTime: "10 min read",
-    slug: "psychology-pricing-price-products-right"
-  },
-  {
-    title: "Inventory Management Best Practices for Growing Businesses",
-    date: "March 2, 2025",
-    readTime: "7 min read",
-    slug: "inventory-management-best-practices-growing-businesses"
-  },
-  {
-    title: "Social Media Marketing for E-commerce: A Complete Guide",
-    date: "February 28, 2025",
-    readTime: "15 min read",
-    slug: "social-media-marketing-ecommerce-complete-guide"
-  }
-];
-
-const newsletterData = {
-  title: "Stay Updated with Latest Insights",
-  description: "Get weekly tips, industry news, and exclusive content delivered to your inbox.",
-  subscribers: "15,000+",
-  benefits: ["Weekly insights", "Industry updates", "Exclusive content", "No spam"]
-};
-
-const authors = [
-  {
-    name: "Sarah Johnson",
-    role: "Senior Technology Writer",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop",
-    posts: 45,
-    expertise: "AI & E-commerce"
-  },
-  {
-    name: "Michael Chen",
-    role: "Marketing Strategist",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop",
-    posts: 38,
-    expertise: "Digital Marketing"
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Customer Experience Expert",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
-    posts: 52,
-    expertise: "UX & CX"
   }
 ];
 
 export default function Blog() {
   return (
-    <>
+    <div>
       <Head>
         <title>Blog - ShopHub | E-commerce Insights & Tips</title>
         <meta name="description" content="Discover the latest insights, strategies, and tips for e-commerce success. Expert articles on technology, marketing, customer experience, and business strategy." />
@@ -121,9 +55,8 @@ export default function Blog() {
         
         <div className="pt-16">
           {/* Hero Section */}
-          <section className="relative bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-700 text-white overflow-hidden">
-            <div className="absolute inset-0 bg-black/20"></div>
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+          <VideoBackground videoSrc="/vedios/vedio6.mp4" className="text-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 min-h-screen flex items-center justify-center">
               <div className="text-center">
                 <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
                   E-commerce
@@ -134,17 +67,17 @@ export default function Blog() {
                   in e-commerce from industry professionals.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="#featured" className="bg-white text-indigo-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-50 transition-colors duration-300 shadow-lg">
-                    Read Latest Posts
+                  <Link href="/contact" className="bg-white text-indigo-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-50 transition-colors duration-300 shadow-lg">
+                    Talk to Us
                   </Link>
-                  <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-indigo-900 transition-all duration-300">
-                    Subscribe to Newsletter
-                  </button>
+                  <Link href="/services" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-indigo-900 transition-all duration-300">
+                    What We Offer
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-gray-900 to-transparent"></div>
-          </section>
+          </VideoBackground>
 
           {/* Featured Posts Section */}
           <section id="featured" className="py-20 bg-gray-50 dark:bg-gray-800">
@@ -222,10 +155,17 @@ export default function Blog() {
               </div>
               
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                {categories.map((category) => (
+                {[
+                  { name: "Technology", count: 15, icon: "🚀" },
+                  { name: "Marketing", count: 23, icon: "📈" },
+                  { name: "Customer Experience", count: 18, icon: "😊" },
+                  { name: "Business Strategy", count: 12, icon: "💼" },
+                  { name: "Analytics", count: 9, icon: "📊" },
+                  { name: "Case Studies", count: 7, icon: "📚" }
+                ].map((category) => (
                   <div key={category.name} className="group">
                     <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 text-center hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors duration-300 cursor-pointer border border-gray-100 dark:border-gray-700 hover:border-indigo-200 dark:hover:border-indigo-700">
-                      <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                      <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
                         {category.icon}
                       </div>
                       <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
@@ -251,7 +191,11 @@ export default function Blog() {
                     Recent Articles
                   </h2>
                   <div className="space-y-6">
-                    {recentPosts.map((post) => (
+                    {[
+                      { title: "Mobile-First Design: Why It's Crucial for E-commerce", date: "March 8, 2025", readTime: "5 min read", slug: "mobile-first-design" },
+                      { title: "The Psychology of Pricing: How to Price Your Products Right", date: "March 5, 2025", readTime: "10 min read", slug: "psychology-pricing" },
+                      { title: "Inventory Management Best Practices for Growing Businesses", date: "March 2, 2025", readTime: "7 min read", slug: "inventory-management" }
+                    ].map((post) => (
                       <article key={post.slug} className="group">
                         <div className="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-600">
                           <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
@@ -288,12 +232,12 @@ export default function Blog() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                       </div>
-                      <h3 className="text-2xl font-bold mb-2">{newsletterData.title}</h3>
-                      <p className="text-indigo-100 mb-6">{newsletterData.description}</p>
+                      <h3 className="text-2xl font-bold mb-2">Stay Updated with Latest Insights</h3>
+                      <p className="text-indigo-100 mb-6">Get weekly tips, industry news, and exclusive content delivered to your inbox.</p>
                     </div>
                     
                     <div className="space-y-4 mb-6">
-                      {newsletterData.benefits.map((benefit, index) => (
+                      {["Weekly insights", "Industry updates", "Exclusive content", "No spam"].map((benefit, index) => (
                         <div key={index} className="flex items-center">
                           <svg className="w-5 h-5 text-indigo-200 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -315,7 +259,7 @@ export default function Blog() {
                     </div>
                     
                     <p className="text-center text-indigo-200 text-sm mt-4">
-                      Join {newsletterData.subscribers} subscribers
+                      Join 15,000+ subscribers
                     </p>
                   </div>
                 </div>
@@ -336,7 +280,11 @@ export default function Blog() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {authors.map((author) => (
+                {[
+                  { name: "Sarah Johnson", role: "Senior Technology Writer", avatar: "/images/image15.jpg", posts: 45, expertise: "AI & E-commerce" },
+                  { name: "Michael Chen", role: "Marketing Strategist", avatar: "/images/image16.jpg", posts: 38, expertise: "Digital Marketing" },
+                  { name: "Emily Rodriguez", role: "Customer Experience Expert", avatar: "/images/image17.jpg", posts: 52, expertise: "UX & CX" }
+                ].map((author) => (
                   <div key={author.name} className="group">
                     <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 text-center shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
                       <img 
@@ -397,6 +345,6 @@ export default function Blog() {
         
         <Footer />
       </div>
-    </>
+    </div>
   );
-}
+} 

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -9,12 +10,18 @@ export default function Footer() {
           {/* Brand & Social */}
           <div className="md:w-1/3">
             <div className="flex items-center mb-4">
-              {/* Logo Placeholder */}
-              <Link href="/" className="text-3xl font-bold text-indigo-400 hover:text-indigo-300 transition-colors">
-                ShopHub
+              {/* Logo */}
+              <Link href="/home1" className="flex items-center">
+                <Image
+                  src="/logo-stackly.png"
+                  alt="E-Commerce Logo"
+                  className="w-28 h-8"
+                  height={32}
+                  width={112}
+                />
               </Link>
             </div>
-            <h2 className="text-xl font-bold text-indigo-400 mb-2">E-Commerce Company</h2>
+            <h2 className="text-xl font-bold text-indigo-400 mb-2">E-commerce</h2>
             <p className="mb-4 text-white/80">
               Leading the future with cutting-edge e-commerce solutions and services.
             </p>
@@ -91,7 +98,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <span className="mr-2">✉️</span>
-                <span>support@shophub.com</span>
+                <span>support@stackly.com</span>
               </li>
               <li className="flex items-center">
                 <span className="mr-2">📍</span>
@@ -107,7 +114,7 @@ export default function Footer() {
         </div>
         {/* Bottom Bar */}
         <div className="border-t border-white/10 mt-10 pt-4 flex flex-col md:flex-row md:justify-between items-center text-sm text-white/60">
-          <div>© 2025 ShopHub E-Commerce Company. All rights reserved.</div>
+          <div>© 2025 ShopHub E-commerce. All rights reserved.</div>
           <div className="flex space-x-6 mt-2 md:mt-0">
             <a href="#" className="hover:text-indigo-400 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-indigo-400 transition-colors">Terms of Service</a>

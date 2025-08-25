@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import VideoBackground from '../components/VideoBackground';
 import Link from 'next/link';
 
 export default function Contact() {
@@ -35,22 +36,24 @@ export default function Contact() {
         <Header />
         
         <div className="pt-16">
-          {/* Hero Section - Indigo Background */}
-          <section className="bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-700 text-white py-20">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-6">
-                <span className="mr-2">📞</span>
-                Get In Touch
+          {/* Hero Section */}
+          <VideoBackground videoSrc="/vedios/vedio4.mp4" className="text-white">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 min-h-screen flex items-center justify-center">
+              <div className="text-center">
+                <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-6">
+                  <span className="mr-2">📞</span>
+                  Get In Touch
+                </div>
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                  Let's Build Something
+                  <span className="block text-indigo-200">Amazing Together</span>
+                </h1>
+                <p className="text-xl text-indigo-100 max-w-3xl mx-auto leading-relaxed">
+                  Ready to transform your e-commerce business? Our team of experts is here to help you succeed.
+                </p>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Let's Build Something
-                <span className="block text-indigo-200">Amazing Together</span>
-              </h1>
-              <p className="text-xl text-indigo-100 max-w-3xl mx-auto leading-relaxed">
-                Ready to transform your e-commerce business? Our team of experts is here to help you succeed.
-              </p>
             </div>
-          </section>
+          </VideoBackground>
 
           {/* Contact Information Section - White Background */}
           <section className="py-20 bg-white dark:bg-gray-900">
@@ -282,79 +285,17 @@ export default function Contact() {
                 <div className="lg:col-span-2">
                   <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700">
                     <div className="h-96 relative">
-                      {/* Interactive Map Placeholder */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-900 dark:to-indigo-800 flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="w-20 h-20 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m-6 3l6-3" />
-                            </svg>
-                          </div>
-                          <h3 className="text-xl font-semibold text-indigo-900 dark:text-indigo-100 mb-2">
-                            Interactive World Map
-                          </h3>
-                          <p className="text-indigo-700 dark:text-indigo-300 text-sm max-w-xs">
-                            Click on the markers to see office details and get directions
-                          </p>
-                        </div>
-                      </div>
-                      
-                      {/* Office Location Markers */}
-                      <div className="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2">
-                        <div className="relative group">
-                          <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white shadow-lg cursor-pointer hover:scale-125 transition-transform duration-200"></div>
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                            <div className="bg-white dark:bg-gray-800 text-xs rounded-lg px-2 py-1 shadow-lg border border-gray-200 dark:border-gray-600 whitespace-nowrap">
-                              <strong>New York Office</strong><br />
-                              123 Business Avenue
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="absolute top-1/3 right-1/4 transform translate-x-1/2 -translate-y-1/2">
-                        <div className="relative group">
-                          <div className="w-6 h-6 bg-blue-500 rounded-full border-2 border-white shadow-lg cursor-pointer hover:scale-125 transition-transform duration-200"></div>
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                            <div className="bg-white dark:bg-gray-800 text-xs rounded-lg px-2 py-1 shadow-lg border border-gray-200 dark:border-gray-600 whitespace-nowrap">
-                              <strong>London Office</strong><br />
-                              456 Innovation Street
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Map Controls */}
-                    <div className="p-4 bg-white dark:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
-                          <button className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                            <span>Search</span>
-                          </button>
-                          <button className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m-6 3l6-3" />
-                            </svg>
-                            <span>Directions</span>
-                          </button>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <button className="w-8 h-8 bg-gray-100 dark:bg-gray-600 rounded flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors">
-                            <svg className="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
-                          </button>
-                          <button className="w-8 h-8 bg-gray-100 dark:bg-gray-600 rounded flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors">
-                            <svg className="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
+                      {/* Google Maps iframe */}
+                      <iframe
+                        title="Google Map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.953736315904!3d-37.8162797420217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f1f1f1f1%3A0x5045675218ce6e0!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sin!4v1620211234567!5m2!1sen!2sin"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen={true}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      ></iframe>
                     </div>
                   </div>
                 </div>

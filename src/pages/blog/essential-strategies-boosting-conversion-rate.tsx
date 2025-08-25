@@ -17,8 +17,18 @@ export default function BlogPost() {
         
         <div className="pt-16">
           {/* Article Header */}
-          <section className="bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-700 text-white py-20">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="relative text-white py-20 overflow-hidden">
+            {/* Background Image with Black Overlay */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url('/images/image19.jpg')`
+              }}
+            />
+            <div className="absolute inset-0 bg-black/60"></div>
+            
+            {/* Content */}
+            <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center">
                 <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-6">
                   <span className="mr-2">📈</span>
@@ -27,15 +37,15 @@ export default function BlogPost() {
                 <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
                   10 Essential Strategies for Boosting Your Conversion Rate
                 </h1>
-                <div className="flex items-center justify-center space-x-6 text-indigo-100">
-                  <div className="flex items-center">
-                    <img 
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop" 
-                      alt="Michael Chen"
-                      className="w-10 h-10 rounded-full mr-3"
-                    />
-                    <span>Michael Chen</span>
-                  </div>
+                                  <div className="flex items-center justify-center space-x-6 text-gray-100">
+                    <div className="flex items-center">
+                      <img 
+                        src="/images/image16.jpg" 
+                        alt="Michael Chen"
+                        className="w-10 h-10 rounded-full mr-3 object-cover"
+                      />
+                      <span>Michael Chen</span>
+                    </div>
                   <span>•</span>
                   <span>March 12, 2025</span>
                   <span>•</span>
@@ -325,9 +335,9 @@ export default function BlogPost() {
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 mb-12">
                   <div className="flex items-start space-x-6">
                     <img 
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop" 
+                      src="/images/image16.jpg" 
                       alt="Michael Chen"
-                      className="w-20 h-20 rounded-full"
+                      className="w-20 h-20 rounded-full object-cover"
                     />
                     <div>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">

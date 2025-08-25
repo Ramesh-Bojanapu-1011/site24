@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import VideoBackground from '../components/VideoBackground';
 import Link from 'next/link';
 
 //  data for the e-commerce website
@@ -11,7 +12,7 @@ const featuredProducts = [
     name: "Premium Wireless Headphones",
     price: "$299.99",
     originalPrice: "$399.99",
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+    image: "/images/FP1.jpg",
     rating: 4.8,
     reviews: 1247
   },
@@ -20,7 +21,7 @@ const featuredProducts = [
     name: "Smart Fitness Watch",
     price: "$199.99",
     originalPrice: "$249.99",
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
+    image: "/images/FP2.jpg",
     rating: 4.6,
     reviews: 892
   },
@@ -29,7 +30,7 @@ const featuredProducts = [
     name: "Ultra HD Camera",
     price: "$599.99",
     originalPrice: "$699.99",
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=400&fit=crop",
+    image: "/images/FP3.jpg",
     rating: 4.9,
     reviews: 2156
   },
@@ -38,7 +39,7 @@ const featuredProducts = [
     name: "Portable Speaker",
     price: "$89.99",
     originalPrice: "$129.99",
-    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop",
+    image: "/images/FP4.jpg",
     rating: 4.5,
     reviews: 634
   }
@@ -50,7 +51,7 @@ const additionalProducts = [
     name: "Gaming Laptop",
     price: "$1,299.99",
     originalPrice: "$1,499.99",
-    image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&h=400&fit=crop",
+    image: "/images/FP5.jpg",
     rating: 4.7,
     reviews: 2156
   },
@@ -59,16 +60,16 @@ const additionalProducts = [
     name: "Wireless Earbuds",
     price: "$149.99",
     originalPrice: "$199.99",
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop",
+    image: "/images/FP6.jpg",
     rating: 4.4,
     reviews: 892
   },
   {
     id: 7,
-    name: "Smart Home Hub",
-    price: "$79.99",
-    originalPrice: "$99.99",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+    name: "Smartphone",
+    price: "$899.99",
+    originalPrice: "$1,099.99",
+    image: "/images/FP7.jpg",
     rating: 4.6,
     reviews: 1247
   },
@@ -77,38 +78,10 @@ const additionalProducts = [
     name: "4K Monitor",
     price: "$399.99",
     originalPrice: "$499.99",
-    image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop",
+    image: "/images/FP8.jpg",
     rating: 4.8,
     reviews: 2156
-  },
-  {
-    id: 9,
-    name: "Bluetooth Speaker",
-    price: "$129.99",
-    originalPrice: "$179.99",
-    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop",
-    rating: 4.5,
-    reviews: 1567
-  },
-  {
-    id: 10,
-    name: "Smartphone",
-    price: "$899.99",
-    originalPrice: "$1,099.99",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop",
-    rating: 4.9,
-    reviews: 3245
-  },
-  {
-    id: 11,
-    name: "Tablet",
-    price: "$499.99",
-    originalPrice: "$649.99",
-    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=400&fit=crop",
-    rating: 4.6,
-    reviews: 1892
-  },
-  
+  }
 ];
 
 const categories = [
@@ -125,7 +98,7 @@ const testimonials = [
     name: "Sarah Johnson",
     role: "Verified Buyer",
     content: "Amazing quality products and fast delivery. This is now my go-to online store!",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop",
+    avatar: "/images/image1.jpg",
     rating: 5,
     purchase: "Premium Wireless Headphones",
     date: "2 weeks ago"
@@ -134,7 +107,7 @@ const testimonials = [
     name: "Michael Chen",
     role: "Premium Member",
     content: "The customer service is exceptional and the product range is incredible. Highly recommended!",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop",
+    avatar: "/images/image2.jpg",
     rating: 5,
     purchase: "Smart Fitness Watch",
     date: "1 month ago"
@@ -143,7 +116,7 @@ const testimonials = [
     name: "Emily Rodriguez",
     role: "Loyal Customer",
     content: "I've been shopping here for years and never been disappointed. Great prices and quality!",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
+    avatar: "/images/image3.jpg",
     rating: 5,
     purchase: "Ultra HD Camera",
     date: "3 weeks ago"
@@ -152,7 +125,7 @@ const testimonials = [
     name: "David Kim",
     role: "Verified Buyer",
     content: "Fast shipping and excellent product quality. Will definitely shop here again!",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+    avatar: "/images/image4.jpg",
     rating: 5,
     purchase: "Portable Speaker",
     date: "1 week ago"
@@ -170,6 +143,18 @@ export default function Home1() {
   const [showAllProducts, setShowAllProducts] = useState(false);
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [cart, setCart] = useState<Array<{id: number, name: string, price: string, image: string, quantity: number}>>([]);
+  const [showCartMessage, setShowCartMessage] = useState<number | null>(null);
+
+  useEffect(() => {
+    // Check if user is logged in
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (!currentUser) {
+      alert('Please login to access this page');
+      window.location.href = '/auth';
+      return;
+    }
+  }, []);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -178,6 +163,25 @@ export default function Home1() {
       setEmail('');
       setTimeout(() => setIsSubscribed(false), 3000);
     }
+  };
+
+  const addToCart = (product: {id: number, name: string, price: string, image: string}) => {
+    setCart(prevCart => {
+      const existingItem = prevCart.find(item => item.id === product.id);
+      if (existingItem) {
+        return prevCart.map(item => 
+          item.id === product.id 
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [...prevCart, { ...product, quantity: 1 }];
+      }
+    });
+    
+    // Show success message
+    setShowCartMessage(product.id);
+    setTimeout(() => setShowCartMessage(null), 2000);
   };
 
   const allProducts = [...featuredProducts, ...additionalProducts];
@@ -189,7 +193,7 @@ export default function Home1() {
   return (
     <>
       <Head>
-        <title>ShopHub - Your Premium E-commerce Destination</title>
+        <title>Stackly - Your Premium E-commerce Destination</title>
         <meta name="description" content="Discover amazing products at unbeatable prices" />
       </Head>
 
@@ -199,9 +203,8 @@ export default function Home1() {
         {/* Main content with top margin for fixed header */}
         <div className="pt-16">
           {/* Hero Section */}
-          <section className="relative bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-700 text-white overflow-hidden">
-            <div className="absolute inset-0 bg-black/20"></div>
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+          <VideoBackground videoSrc="/vedios/vedio1.mp4" className="text-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 min-h-screen flex items-center justify-center">
               <div className="text-center">
                 <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
                   Discover Amazing
@@ -212,17 +215,17 @@ export default function Home1() {
                   Join thousands of satisfied customers worldwide.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="bg-white text-indigo-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-50 transition-colors duration-300 shadow-lg">
-                    Shop Now
-                  </button>
+                  <Link href="/contact" className="bg-white text-indigo-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-50 transition-colors duration-300 shadow-lg text-center">
+                    Connect
+                  </Link>
                   <Link href="/about" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-indigo-900 transition-all duration-300 text-center">
-                    Learn More
+                    Know More
                   </Link>
                 </div>
               </div>
             </div>
             <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-gray-900 to-transparent"></div>
-          </section>
+          </VideoBackground>
 
           {/* Categories Section */}
           <section className="py-20 bg-gray-50 dark:bg-gray-800">
@@ -239,7 +242,7 @@ export default function Home1() {
                 {categories.map((category, index) => (
                   <div key={index} className="group cursor-pointer">
                     <div className="bg-white dark:bg-gray-700 rounded-xl p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-600">
-                      <div className="text-4xl mb-3">{category.icon}</div>
+                      <div className="text-4xl mb-3 flex justify-center">{category.icon}</div>
                       <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{category.name}</h3>
                       <p className="text-sm text-indigo-600 dark:text-indigo-400 font-medium">{category.count}</p>
                     </div>
@@ -293,9 +296,19 @@ export default function Home1() {
                             <span className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{product.price}</span>
                             <span className="text-sm text-gray-500 dark:text-gray-400 line-through ml-2">{product.originalPrice}</span>
                           </div>
-                          <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors font-medium">
-                            Add to Cart
-                          </button>
+                          <div className="relative">
+                            <button 
+                              onClick={() => addToCart(product)}
+                              className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+                            >
+                              Add to Cart
+                            </button>
+                            {showCartMessage === product.id && (
+                              <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap z-10">
+                                Added to cart! ✓
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -312,6 +325,62 @@ export default function Home1() {
               </div>
             </div>
           </section>
+
+          {/* Cart Display Section */}
+          {cart.length > 0 && (
+            <section className="py-12 bg-gray-50 dark:bg-gray-800">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                    Your Cart ({cart.reduce((total, item) => total + item.quantity, 0)} items)
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Total: ${cart.reduce((total, item) => total + (parseFloat(item.price.replace('$', '')) * item.quantity), 0).toFixed(2)}
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {cart.map((item) => (
+                    <div key={item.id} className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-sm border border-gray-100 dark:border-gray-600">
+                      <div className="flex items-center space-x-3">
+                        <img 
+                          src={item.image} 
+                          alt={item.name}
+                          className="w-12 h-12 object-cover rounded-lg"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                            {item.name}
+                          </h4>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            {item.price} × {item.quantity}
+                          </p>
+                        </div>
+                        <button 
+                          onClick={() => setCart(prevCart => prevCart.filter(cartItem => cartItem.id !== item.id))}
+                          className="text-red-500 hover:text-red-700 transition-colors"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="text-center mt-6">
+                  <button 
+                    onClick={() => setCart([])}
+                    className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium mr-4"
+                  >
+                    Clear Cart
+                  </button>
+                  <button className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors font-medium">
+                    Checkout
+                  </button>
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Stats Section */}
           <section className="py-20 bg-indigo-900 text-white">

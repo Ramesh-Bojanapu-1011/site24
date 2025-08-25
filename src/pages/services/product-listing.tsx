@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import VideoBackground from '../../components/VideoBackground';
 import Link from 'next/link';
 
 export default function ProductListing() {
@@ -16,37 +17,39 @@ export default function ProductListing() {
         <Header />
         
         <div className="pt-16">
-          {/* Hero Section - Indigo Background */}
-          <section className="bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-700 text-white py-20">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-6">
-                <span className="mr-2">📦</span>
-                Product Listing Service
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Transform Your Product
-                <span className="block text-indigo-200">Catalog Today</span>
-              </h1>
-              <p className="text-xl text-indigo-100 max-w-3xl mx-auto leading-relaxed">
-                Professional product listing services that boost visibility, improve conversions, and drive sales. 
-                Let our experts optimize your product catalog for maximum impact.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
-                  href="#get-started" 
-                  className="inline-flex items-center px-8 py-4 bg-white text-indigo-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105"
-                >
-                  Get Started
-                </Link>
-                <Link 
-                  href="/contact" 
-                  className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-indigo-600 transition-colors duration-200 transform hover:scale-105"
-                >
-                  Contact Us
-                </Link>
+          {/* Hero Section - Video Background */}
+          <VideoBackground videoSrc="/vedios/vedio7.mp4">
+            <div className="flex items-center justify-center min-h-screen">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-6">
+                  <span className="mr-2">📦</span>
+                  Product Listing Service
+                </div>
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
+                  Transform Your Product
+                  <span className="block text-indigo-200">Catalog Today</span>
+                </h1>
+                <p className="text-xl text-indigo-100 max-w-3xl mx-auto leading-relaxed">
+                  Professional product listing services that boost visibility, improve conversions, and drive sales. 
+                  Let our experts optimize your product catalog for maximum impact.
+                </p>
+                <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link 
+                    href="/blog" 
+                    className="inline-flex items-center px-8 py-4 bg-white text-indigo-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105"
+                  >
+                    Get Started
+                  </Link>
+                  <Link 
+                    href="/contact" 
+                    className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-indigo-600 transition-colors duration-200 transform hover:scale-105"
+                  >
+                    Contact Us
+                  </Link>
+                </div>
               </div>
             </div>
-          </section>
+          </VideoBackground>
 
           {/* Features Section - White Background */}
           <section className="py-20 bg-white dark:bg-gray-900">
@@ -278,35 +281,29 @@ export default function ProductListing() {
             </div>
           </section>
 
-          {/* CTA Section - Indigo Background */}
-          <section id="get-started" className="py-20 bg-gradient-to-br from-indigo-600 via-indigo-700 to-indigo-800 text-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          {/* CTA Section - Background Image with Overlay */}
+          <section id="get-started" className="py-20 relative">
+            <div className="absolute inset-0 bg-black/60 z-10"></div>
+            <div className="absolute inset-0 z-0">
+              <img 
+                src="/images/CTA.jpg" 
+                alt="CTA Background" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 Ready to Optimize Your Product Listings?
               </h2>
-              <p className="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
                 Join hundreds of successful businesses that have transformed their product catalogs with our expert services.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
-                  href="/contact" 
-                  className="inline-flex items-center px-8 py-4 bg-white text-indigo-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105"
-                >
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                  Start Your Project
-                </Link>
-                <Link 
-                  href="/services" 
-                  className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-indigo-600 transition-colors duration-200 transform hover:scale-105"
-                >
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  View All Services
-                </Link>
-              </div>
+              <Link 
+                href="/contact" 
+                className="inline-flex items-center px-8 py-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200 transform hover:scale-105"
+              >
+                Get Started Today
+              </Link>
             </div>
           </section>
         </div>

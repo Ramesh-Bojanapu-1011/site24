@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ModeToggle } from "./theme/ModeToggle";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,6 +16,41 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [homeDropdown, setHomeDropdown] = useState(false);
   const [servicesDropdown, setServicesDropdown] = useState(false);
+  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [homeTimeout, setHomeTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [servicesTimeout, setServicesTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    // Check if user is logged in
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    setCurrentUser(user);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('currentUser');
+    setCurrentUser(null);
+    window.location.href = '/';
+  };
+
+  const handleHomeMouseEnter = () => {
+    if (homeTimeout) clearTimeout(homeTimeout);
+    setHomeDropdown(true);
+  };
+
+  const handleHomeMouseLeave = () => {
+    const timeout = setTimeout(() => setHomeDropdown(false), 150);
+    setHomeTimeout(timeout);
+  };
+
+  const handleServicesMouseEnter = () => {
+    if (servicesTimeout) clearTimeout(servicesTimeout);
+    setServicesDropdown(true);
+  };
+
+  const handleServicesMouseLeave = () => {
+    const timeout = setTimeout(() => setServicesDropdown(false), 150);
+    setServicesTimeout(timeout);
+  };
 
   return (
     <header className={``}>
@@ -28,7 +63,7 @@ export default function Header() {
                 <Image
                   src="/logo-stackly.png"
                   alt="E-Commerce Logo"
-                  className="w-8 h-8"
+                  className="w-28 h-8"
                   height={32}
                   width={32}
                 />
@@ -40,14 +75,20 @@ export default function Header() {
               {/* Home Dropdown */}
               <div
                 className="relative"
-                onMouseEnter={() => setHomeDropdown(true)}
-                onMouseLeave={() => setHomeDropdown(false)}
+                onMouseEnter={handleHomeMouseEnter}
+                onMouseLeave={handleHomeMouseLeave}
               >
-                <button className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
-                  Home
-                </button>
+                <Link href="/home1">
+                  <button className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
+                    Home
+                  </button>
+                </Link>
                 {homeDropdown && (
-                  <div className="absolute left-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg z-30">
+                  <div 
+                    className="absolute left-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg z-30"
+                    onMouseEnter={handleHomeMouseEnter}
+                    onMouseLeave={handleHomeMouseLeave}
+                  >
                     <Link
                       href="/home1"
                       className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -55,7 +96,7 @@ export default function Header() {
                       Home1
                     </Link>
                     <Link
-                      href="/"
+                      href="/home2"
                       className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
                       Home2
@@ -72,14 +113,20 @@ export default function Header() {
               {/* Services Dropdown */}
               <div
                 className="relative"
-                onMouseEnter={() => setServicesDropdown(true)}
-                onMouseLeave={() => setServicesDropdown(false)}
+                onMouseEnter={handleServicesMouseEnter}
+                onMouseLeave={handleServicesMouseLeave}
               >
-                <button className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
-                  Services
-                </button>
+                <Link href="/services">
+                  <button className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
+                    Services
+                  </button>
+                </Link>
                 {servicesDropdown && (
-                  <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-30">
+                  <div 
+                    className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-30"
+                    onMouseEnter={handleServicesMouseEnter}
+                    onMouseLeave={handleServicesMouseLeave}
+                  >
                     <Link
                       href="/services"
                       className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 border-b border-gray-200 dark:border-gray-700"
@@ -92,7 +139,7 @@ export default function Header() {
                         href={service.href}
                         className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
-                        {service.icon} {service.name}
+                        {service.name}
                       </Link>
                     ))}
                   </div>
@@ -110,6 +157,48 @@ export default function Header() {
               >
                 Contact Us
               </Link>
+              {/* User Menu */}
+              {currentUser ? (
+                <div className="flex items-center space-x-3">
+                  {currentUser.role === 'admin' && (
+                    <Link
+                      href="/dashboard"
+                      className="px-3 py-2 rounded-md text-sm font-medium text-purple-700 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                    >
+                      Dashboard
+                    </Link>
+                  )}
+                  {/* User Avatar */}
+                  <div className="relative group">
+                    <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-indigo-700 transition-colors">
+                      <span className="text-white font-bold text-sm">
+                        {currentUser.username ? currentUser.username.substring(0, 2).toUpperCase() : 'U'}
+                      </span>
+                    </div>
+                    {/* Dropdown Menu */}
+                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                      <div className="py-2">
+                        <div className="px-4 py-2 text-sm text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700">
+                          Welcome, {currentUser.username}
+                        </div>
+                        <button
+                          onClick={handleLogout}
+                          className="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20"
+                        >
+                          Logout
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  href="/auth"
+                  className="px-4 py-2 rounded-md text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+                >
+                  Login
+                </Link>
+              )}
               {/* Dark Mode Toggle */}
               <ModeToggle />
             </div>
@@ -153,12 +242,21 @@ export default function Header() {
           <div className="md:hidden bg-white dark:bg-gray-900 px-2 pt-2 pb-3 space-y-1">
             {/* Home Dropdown */}
             <div>
-              <button
-                onClick={() => setHomeDropdown(!homeDropdown)}
-                className="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
-              >
-                Home
-              </button>
+              <div className="flex items-center">
+                <Link href="/home1" className="flex-1">
+                  <button className="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
+                    Home
+                  </button>
+                </Link>
+                <button
+                  onClick={() => setHomeDropdown(!homeDropdown)}
+                  className="px-2 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </div>
               {homeDropdown && (
                 <div className="pl-4">
                   <Link
@@ -168,7 +266,7 @@ export default function Header() {
                     Home1
                   </Link>
                   <Link
-                    href="/"
+                    href="/home2"
                     className="block px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     Home2
@@ -184,12 +282,21 @@ export default function Header() {
             </Link>
             {/* Services Dropdown */}
             <div>
-              <button
-                onClick={() => setServicesDropdown(!servicesDropdown)}
-                className="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
-              >
-                Services
-              </button>
+              <div className="flex items-center">
+                <Link href="/services" className="flex-1">
+                  <button className="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
+                    Services
+                  </button>
+                </Link>
+                <button
+                  onClick={() => setServicesDropdown(!servicesDropdown)}
+                  className="px-2 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </div>
               {servicesDropdown && (
                 <div className="pl-4">
                   <Link
@@ -204,7 +311,7 @@ export default function Header() {
                       href={service.href}
                       className="block px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
-                      {service.icon} {service.name}
+                      {service.name}
                     </Link>
                   ))}
                 </div>
@@ -222,6 +329,43 @@ export default function Header() {
             >
               Contact Us
             </Link>
+            {/* User Menu Mobile */}
+            {currentUser ? (
+              <>
+                <div className="flex items-center space-x-3 px-3 py-2">
+                  {/* User Avatar Mobile */}
+                  <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">
+                      {currentUser.username ? currentUser.username.substring(0, 2).toUpperCase() : 'U'}
+                    </span>
+                  </div>
+                  <div className="text-sm text-gray-700 dark:text-gray-200">
+                    Welcome, {currentUser.username}
+                  </div>
+                </div>
+                {currentUser.role === 'admin' && (
+                  <Link
+                    href="/dashboard"
+                    className="block px-3 py-2 rounded-md text-sm font-medium text-purple-700 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                  >
+                    Dashboard
+                  </Link>
+                )}
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link
+                href="/auth"
+                className="block px-3 py-2 rounded-md text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+              >
+                Login
+              </Link>
+            )}
           </div>
         )}
       </nav>

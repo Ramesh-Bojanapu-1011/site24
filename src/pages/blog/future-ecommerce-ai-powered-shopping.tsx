@@ -17,8 +17,18 @@ export default function BlogPost() {
         
         <div className="pt-16">
           {/* Article Header */}
-          <section className="bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-700 text-white py-20">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="relative text-white py-20 overflow-hidden">
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: 'url(/images/image18.jpg)'
+              }}
+            />
+            {/* Black Overlay */}
+            <div className="absolute inset-0 bg-black/60"></div>
+            {/* Content */}
+            <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center">
                 <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-6">
                   <span className="mr-2">🚀</span>
@@ -27,20 +37,20 @@ export default function BlogPost() {
                 <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
                   The Future of E-commerce: AI-Powered Shopping Experiences
                 </h1>
-                <div className="flex items-center justify-center space-x-6 text-indigo-100">
-                  <div className="flex items-center">
-                    <img 
-                      src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop" 
-                      alt="Sarah Johnson"
-                      className="w-10 h-10 rounded-full mr-3"
-                    />
-                    <span>Sarah Johnson</span>
-                  </div>
-                  <span>•</span>
-                  <span>March 15, 2025</span>
-                  <span>•</span>
-                  <span>8 min read</span>
-                </div>
+                                 <div className="flex items-center justify-center space-x-6 text-white">
+                   <div className="flex items-center">
+                     <img 
+                       src="/images/image15.jpg" 
+                       alt="Sarah Johnson"
+                       className="w-10 h-10 rounded-full mr-3 object-cover"
+                     />
+                     <span>Sarah Johnson</span>
+                   </div>
+                   <span>•</span>
+                   <span>March 15, 2025</span>
+                   <span>•</span>
+                   <span>8 min read</span>
+                 </div>
               </div>
             </div>
           </section>
@@ -238,28 +248,28 @@ export default function BlogPost() {
                 </p>
 
                 {/* Author Bio */}
-                <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 mb-12">
-                  <div className="flex items-start space-x-6">
-                    <img 
-                      src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop" 
-                      alt="Sarah Johnson"
-                      className="w-20 h-20 rounded-full"
-                    />
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                        About Sarah Johnson
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300 mb-3">
-                        Sarah is a Senior Technology Writer with over 8 years of experience covering e-commerce and digital transformation. She specializes in AI applications in business and has helped numerous companies understand and implement emerging technologies.
-                      </p>
-                      <div className="flex space-x-4 text-sm text-gray-500 dark:text-gray-400">
-                        <span>45 articles published</span>
-                        <span>•</span>
-                        <span>Expert in AI & E-commerce</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                                 <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 mb-12">
+                   <div className="flex items-start space-x-6">
+                     <img 
+                       src="/images/image15.jpg" 
+                       alt="Sarah Johnson"
+                       className="w-20 h-20 rounded-full object-cover"
+                     />
+                     <div>
+                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                         About Sarah Johnson
+                       </h3>
+                       <p className="text-gray-600 dark:text-gray-300 mb-3">
+                         Sarah is a Senior Technology Writer with over 8 years of experience covering e-commerce and digital transformation. She specializes in AI applications in business and has helped numerous companies understand and implement emerging technologies.
+                       </p>
+                       <div className="flex space-x-4 text-sm text-gray-500 dark:text-gray-400">
+                         <span>45 articles published</span>
+                         <span>•</span>
+                         <span>Expert in AI & E-commerce</span>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
 
                 {/* Related Articles */}
                 <div className="border-t border-gray-200 dark:border-gray-700 pt-12">
